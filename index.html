@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="no-referrer" name="referrer"/>
+<title>电商平台系统源代码展示</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        .code-section {
+            transition: all 0.3s ease;
+        }
+        .code-section.collapsed .code-content {
+            display: none;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .code-container:hover .copy-btn {
+            opacity: 1;
+        }
+        pre[class*="language-"] {
+            margin: 0;
+            border-radius: 0.5rem;
+        }
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen" style="padding-bottom: 50px;">
+<!-- 顶部导航 -->
+<nav class="bg-white shadow-lg border-b sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center space-x-4">
+<i class="fas fa-code text-2xl text-blue-600"></i>
+<h1 class="text-xl font-bold text-gray-800">电商平台系统源代码</h1>
+</div>
+<div class="flex items-center space-x-4">
+<button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-200" onclick="expandAll()">
+<i class="fas fa-expand-alt mr-2"></i>展开全部
+                    </button>
+<button class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200" onclick="collapseAll()">
+<i class="fas fa-compress-alt mr-2"></i>折叠全部
+                    </button>
+</div>
+</div>
+</div>
+</nav>
+<div class="max-w-7xl mx-auto px-4 py-8">
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+<!-- 侧边栏目录 -->
+<div class="lg:col-span-1">
+<div class="sidebar bg-white rounded-xl shadow-lg p-6">
+<h3 class="text-lg font-semibold text-gray-800 mb-4">代码目录</h3>
+<nav class="space-y-2">
+<a class="block px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition duration-200" href="#html-structure">
+<i class="fab fa-html5 mr-2"></i>HTML 结构
+                        </a>
+<a class="block px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition duration-200" href="#css-styles">
+<i class="fab fa-css3-alt mr-2"></i>CSS 样式
+                        </a>
+<a class="block px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition duration-200" href="#js-core">
+<i class="fab fa-js-square mr-2"></i>JavaScript 核心
+                        </a>
+<a class="block px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition duration-200" href="#user-management">
+<i class="fas fa-users mr-2"></i>用户管理
+                        </a>
+<a class="block px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition duration-200" href="#store-management">
+<i class="fas fa-store mr-2"></i>商店管理
+                        </a>
+<a class="block px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition duration-200" href="#order-management">
+<i class="fas fa-shopping-cart mr-2"></i>订单管理
+                        </a>
+<a class="block px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition duration-200" href="#member-system">
+<i class="fas fa-crown mr-2"></i>会员系统
+                        </a>
+<a class="block px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition duration-200" href="#points-system">
+<i class="fas fa-coins mr-2"></i>积分系统
+                        </a>
+<a class="block px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition duration-200" href="#realtime-communication">
+<i class="fas fa-broadcast-tower mr-2"></i>实时通信
+                        </a>
+<a class="block px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition duration-200" href="#data-visualization">
+<i class="fas fa-chart-bar mr-2"></i>数据可视化
+                        </a>
+</nav>
+</div>
+</div>
+<!-- 主内容区域 -->
+<div class="lg:col-span-3 space-y-8">
+<!-- HTML 结构 -->
+<section class="code-section bg-white rounded-xl shadow-lg" id="html-structure">
+<div class="p-6 border-b border-gray-200">
+<div class="flex justify-between items-center cursor-pointer" onclick="toggleSection(this)">
+<h2 class="text-xl font-bold text-gray-800">
+<i class="fab fa-html5 text-orange-500 mr-2"></i>HTML 结构
+                            </h2>
+<i class="fas fa-chevron-down transform transition-transform duration-200"></i>
+</div>
+</div>
+<div class="code-content">
+<div class="code-container relative">
+<button class="copy-btn bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700" onclick="copyCode(this)">
+<i class="fas fa-copy mr-1"></i>复制
+                            </button>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta name="referrer" content="no-referrer"&gt;
+    &lt;title&gt;电商平台系统&lt;/title&gt;
+    &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;
+    &lt;link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+
+&lt;!-- 登录页面 --&gt;
+&lt;div id="loginPage" class="min-h-screen gradient-bg flex items-center justify-center"&gt;
+    &lt;div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md"&gt;
+        &lt;div class="text-center mb-8"&gt;
+            &lt;h1 class="text-3xl font-bold text-gray-800 mb-2"&gt;电商平台系统&lt;/h1&gt;
+            &lt;p class="text-gray-600"&gt;用户 · 商店 · 会员一体化管理&lt;/p&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="space-y-4"&gt;
+            &lt;div&gt;
+                &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;用户名&lt;/label&gt;
+                &lt;input type="text" id="username" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="请输入用户名"&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+                &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;密码&lt;/label&gt;
+                &lt;input type="password" id="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="请输入密码"&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+                &lt;label class="block text-sm font-medium text-gray-700 mb-2"&gt;用户类型&lt;/label&gt;
+                &lt;select id="userType" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"&gt;
+                    &lt;option value="user"&gt;普通用户&lt;/option&gt;
+                    &lt;option value="store"&gt;商家&lt;/option&gt;
+                    &lt;option value="admin"&gt;平台管理员&lt;/option&gt;
+                &lt;/select&gt;
+            &lt;/div&gt;
+            &lt;button onclick="login()" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-200 font-medium"&gt;
+                登录系统
+            &lt;/button&gt;
+            &lt;button onclick="register()" class="w-full bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-700 transition duration-200 font-medium"&gt;
+                注册账号
+            &lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</section>
+<!-- CSS 样式 -->
+<section class="code-section bg-white rounded-xl shadow-lg" id="css-styles">
+<div class="p-6 border-b border-gray-200">
+<div class="flex justify-between items-center cursor-pointer" onclick="toggleSection(this)">
+<h2 class="text-xl font-bold text-gray-800">
+<i class="fab fa-css3-alt text-blue-500 mr-2"></i>CSS 样式
+                            </h2>
+<i class="fas fa-chevron-down transform transition-transform duration-200"></i>
+</div>
+</div>
+<div class="code-content">
+<div class="code-container relative">
+<button class="copy-btn bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700" onclick="copyCode(this)">
+<i class="fas fa-copy mr-1"></i>复制
+                            </button>
+<pre><code class="language-css">&lt;style&gt;
+.gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.notification {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+.online-indicator {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+&lt;/style&gt;</code></pre>
+</div>
+</div>
+</section>
+<!-- JavaScript 核心 -->
+<section class="code-section bg-white rounded-xl shadow-lg" id="js-core">
+<div class="p-6 border-b border-gray-200">
+<div class="flex justify-between items-center cursor-pointer" onclick="toggleSection(this)">
+<h2 class="text-xl font-bold text-gray-800">
+<i class="fab fa-js-square text-yellow-500 mr-2"></i>JavaScript 核心功能
+                            </h2>
+<i class="fas fa-chevron-down transform transition-transform duration-200"></i>
+</div>
+</div>
+<div class="code-content">
+<div class="code-container relative">
+<button class="copy-btn bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700" onclick="copyCode(this)">
+<i class="fas fa-copy mr-1"></i>复制
+                            </button>
+<pre><code class="language-javascript">// 全局变量
+let currentUser = null;
+let currentUserType = null;
+let websocket = null;
+let charts = {};
+
+// 模拟数据
+const mockData = {
+    users: [
+        { id: 1, username: 'user1', type: 'user', points: 1250, status: 'active' },
+        { id: 2, username: 'store1', type: 'store', points: 2500, status: 'active' },
+        { id: 3, username: 'admin1', type: 'admin', points: 5000, status: 'active' }
+    ],
+    stores: [
+        { id: 1, name: '数码专营店', owner: 'store1', products: 156, sales: 25600, status: 'active' },
+        { id: 2, name: '服装时尚馆', owner: 'store2', products: 89, sales: 18900, status: 'active' },
+        { id: 3, name: '美食天地', owner: 'store3', products: 234, sales: 32100, status: 'active' }
+    ],
+    orders: [
+        { id: 'ORD001', user: 'user1', store: '数码专营店', amount: 299, status: 'completed', time: '2024-01-15 10:30' },
+        { id: 'ORD002', user: 'user2', store: '服装时尚馆', amount: 159, status: 'processing', time: '2024-01-15 11:45' },
+        { id: 'ORD003', user: 'user3', store: '美食天地', amount: 89, status: 'pending', time: '2024-01-15 12:20' }
+    ]
+};
+
+// 初始化应用
+document.addEventListener('DOMContentLoaded', function() {
+    initializeApp();
+});
+
+function initializeApp() {
+    // 检查是否已登录
+    const savedUser = localStorage.getItem('currentUser');
+    if (savedUser) {
+        currentUser = JSON.parse(savedUser);
+        currentUserType = currentUser.type;
+        showMainApp();
+    }
+    
+    // 初始化模拟数据
+    if (!localStorage.getItem('users')) {
+        localStorage.setItem('users', JSON.stringify(mockData.users));
+    }
+    if (!localStorage.getItem('stores')) {
+        localStorage.setItem('stores', JSON.stringify(mockData.stores));
+    }
+    if (!localStorage.getItem('orders')) {
+        localStorage.setItem('orders', JSON.stringify(mockData.orders));
+    }
+}</code></pre>
+</div>
+</div>
+</section>
+<!-- 用户管理 -->
+<section class="code-section bg-white rounded-xl shadow-lg" id="user-management">
+<div class="p-6 border-b border-gray-200">
+<div class="flex justify-between items-center cursor-pointer" onclick="toggleSection(this)">
+<h2 class="text-xl font-bold text-gray-800">
+<i class="fas fa-users text-green-500 mr-2"></i>用户管理模块
+                            </h2>
+<i class="fas fa-chevron-down transform transition-transform duration-200"></i>
+</div>
+</div>
+<div class="code-content">
+<div class="code-container relative">
+<button class="copy-btn bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700" onclick="copyCode(this)">
+<i class="fas fa-copy mr-1"></i>复制
+                            </button>
+<pre><code class="language-javascript">// 登录功能
+function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const userType = document.getElementById('userType').value;
+
+    if (!username || !password) {
+        showNotification('请输入用户名和密码', 'error');
+        return;
+    }
+
+    // 模拟登录验证
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    let user = users.find(u =&gt; u.username === username &amp;&amp; u.type === userType);
+    
+    if (!user) {
+        // 如果用户不存在，创建新用户
+        user = {
+            id: users.length + 1,
+            username: username,
+            type: userType,
+            points: userType === 'admin' ? 5000 : 1000,
+            status: 'active'
+        };
+        users.push(user);
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+
+    currentUser = user;
+    currentUserType = userType;
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    
+    showNotification('登录成功！', 'success');
+    showMainApp();
+}
+
+// 注册功能
+function register() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const userType = document.getElementById('userType').value;
+
+    if (!username || !password) {
+        showNotification('请输入用户名和密码', 'error');
+        return;
+    }
+
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    
+    if (users.find(u =&gt; u.username === username)) {
+        showNotification('用户名已存在', 'error');
+        return;
+    }
+
+    const newUser = {
+        id: users.length + 1,
+        username: username,
+        type: userType,
+        points: 100, // 注册奖励积分
+        status: 'active'
+    };
+
+    users.push(newUser);
+    localStorage.setItem('users', JSON.stringify(users));
+    
+    showNotification('注册成功！请登录', 'success');
+}
+
+// 加载用户管理
+function loadUsers() {
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const tbody = document.getElementById('usersTable');
+    
+    tbody.innerHTML = users.map(user =&gt; `
+        &lt;tr&gt;
+            &lt;td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"&gt;${user.id}&lt;/td&gt;
+            &lt;td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"&gt;${user.username}&lt;/td&gt;
+            &lt;td class="px-6 py-4 whitespace-nowrap"&gt;
+                &lt;span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800"&gt;
+                    ${getUserTypeText(user.type)}
+                &lt;/span&gt;
+            &lt;/td&gt;
+            &lt;td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"&gt;${user.points}&lt;/td&gt;
+            &lt;td class="px-6 py-4 whitespace-nowrap"&gt;
+                &lt;span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${user.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}"&gt;
+                    ${user.status === 'active' ? '活跃' : '禁用'}
+                &lt;/span&gt;
+            &lt;/td&gt;
+            &lt;td class="px-6 py-4 whitespace-nowrap text-sm font-medium"&gt;
+                &lt;button onclick="editUser(${user.id})" class="text-indigo-600 hover:text-indigo-900 mr-2"&gt;编辑&lt;/button&gt;
+                &lt;button onclick="deleteUser(${user.id})" class="text-red-600 hover:text-red-900"&gt;删除&lt;/button&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    `).join('');
+}</code></pre>
+</div>
+</div>
+</section>
+<!-- 商店管理 -->
+<section class="code-section bg-white rounded-xl shadow-lg" id="store-management">
+<div class="p-6 border-b border-gray-200">
+<div class="flex justify-between items-center cursor-pointer" onclick="toggleSection(this)">
+<h2 class="text-xl font-bold text-gray-800">
+<i class="fas fa-store text-purple-500 mr-2"></i>商店管理模块
+                            </h2>
+<i class="fas fa-chevron-down transform transition-transform duration-200"></i>
+</div>
+</div>
+<div class="code-content">
+<div class="code-container relative">
+<button class="copy-btn bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700" onclick="copyCode(this)">
+<i class="fas fa-copy mr-1"></i>复制
+                            </button>
+<pre><code class="language-javascript">// 加载商店管理
+function loadStores() {
+    const stores = JSON.parse(localStorage.getItem('stores') || '[]');
+    const grid = document.getElementById('storesGrid');
+    
+    grid.innerHTML = stores.map(store =&gt; `
+        &lt;div class="bg-white rounded-xl shadow-lg p-6 card-hover"&gt;
+            &lt;div class="flex items-center justify-between mb-4"&gt;
+                &lt;h3 class="text-lg font-semibold text-gray-800"&gt;${store.name}&lt;/h3&gt;
+                &lt;span class="px-2 py-1 text-xs font-semibold rounded-full ${store.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}"&gt;
+                    ${store.status === 'active' ? '营业中' : '已关闭'}
+                &lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class="space-y-2 text-sm text-gray-600"&gt;
+                &lt;p&gt;&lt;i class="fas fa-user mr-2"&gt;&lt;/i&gt;店主: ${store.owner}&lt;/p&gt;
+                &lt;p&gt;&lt;i class="fas fa-box mr-2"&gt;&lt;/i&gt;商品数: ${store.products}&lt;/p&gt;
+                &lt;p&gt;&lt;i class="fas fa-chart-line mr-2"&gt;&lt;/i&gt;销售额: ¥${store.sales.toLocaleString()}&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="mt-4 flex space-x-2"&gt;
+                &lt;button onclick="editStore(${store.id})" class="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200 text-sm"&gt;
+                    编辑
+                &lt;/button&gt;
+                &lt;button onclick="viewStore(${store.id})" class="flex-1 bg-gray-600 text-white py-2 rounded-lg hover:bg-gray-700 transition duration-200 text-sm"&gt;
+                    查看
+                &lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    `).join('');
+}
+
+// 商店操作函数
+function addStore() {
+    showNotification('添加商店功能', 'info');
+}
+
+function editStore(id) {
+    showNotification(`编辑商店 ${id}`, 'info');
+}
+
+function viewStore(id) {
+    showNotification(`查看商店 ${id}`, 'info');
+}</code></pre>
+</div>
+</div>
+</section>
+<!-- 订单管理 -->
+<section class="code-section bg-white rounded-xl shadow-lg" id="order-management">
+<div class="p-6 border-b border-gray-200">
+<div class="flex justify-between items-center cursor-pointer" onclick="toggleSection(this)">
+<h2 class="text-xl font-bold text-gray-800">
+<i class="fas fa-shopping-cart text-red-500 mr-2"></i>订单管理模块
+                            </h2>
+<i class="fas fa-chevron-down transform transition-transform duration-200"></i>
+</div>
+</div>
+<div class="code-content">
+<div class="code-container relative">
+<button class="copy-btn bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700" onclick="copyCode(this)">
+<i class="fas fa-copy mr-1"></i>复制
+                            </button>
+<pre><code class="language-javascript">// 加载订单管理
+function loadOrders() {
+    const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+    const tbody = document.getElementById('ordersTable');
+    
+    tbody.innerHTML = orders.map(order =&gt; `
+        &lt;tr&gt;
+            &lt;td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"&gt;${order.id}&lt;/td&gt;
+            &lt;td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"&gt;${order.user}&lt;/td&gt;
+            &lt;td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"&gt;${order.store}&lt;/td&gt;
+            &lt;td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"&gt;¥${order.amount}&lt;/td&gt;
+            &lt;td class="px-6 py-4 whitespace-nowrap"&gt;
+                &lt;span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getOrderStatusColor(order.status)}"&gt;
+                    ${getOrderStatusText(order.status)}
+                &lt;/span&gt;
+            &lt;/td&gt;
+            &lt;td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"&gt;${order.time}&lt;/td&gt;
+            &lt;td class="px-6 py-4 whitespace-nowrap text-sm font-medium"&gt;
+                &lt;button onclick="updateOrderStatus('${order.id}')" class="text-indigo-600 hover:text-indigo-900 mr-2"&gt;更新&lt;/button&gt;
+                &lt;button onclick="viewOrder('${order.id}')" class="text-green-600 hover:text-green-900"&gt;查看&lt;/button&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    `).join('');
+}
+
+// 获取订单状态颜色
+function getOrderStatusColor(status) {
+    const colors = {
+        'pending': 'bg-yellow-100 text-yellow-800',
+        'processing': 'bg-blue-100 text-blue-800',
+        'completed': 'bg-green-100 text-green-800',
+        'cancelled': 'bg-red-100 text-red-800'
+    };
+    return colors[status] || 'bg-gray-100 text-gray-800';
+}
+
+// 获取订单状态文本
+function getOrderStatusText(status) {
+    const texts = {
+        'pending': '待处理',
+        'processing': '处理中',
+        'completed': '已完成',
+        'cancelled': '已取消'
+    };
+    return texts[status] || status;
+}
+
+// 订单操作函数
+function createOrder() {
+    showNotification('创建订单功能', 'info');
+}
+
+function updateOrderStatus(id) {
+    showNotification(`更新订单 ${id} 状态`, 'info');
+}
+
+function viewOrder(id) {
+    showNotification(`查看订单 ${id}`, 'info');
+}</code></pre>
+</div>
+</div>
+</section>
+<!-- 会员系统 -->
+<section class="code-section bg-white rounded-xl shadow-lg" id="member-system">
+<div class="p-6 border-b border-gray-200">
+<div class="flex justify-between items-center cursor-pointer" onclick="toggleSection(this)">
+<h2 class="text-xl font-bold text-gray-800">
+<i class="fas fa-crown text-yellow-500 mr-2"></i>会员系统模块
+                            </h2>
+<i class="fas fa-chevron-down transform transition-transform duration-200"></i>
+</div>
+</div>
+<div class="code-content">
+<div class="code-container relative">
+<button class="copy-btn bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700" onclick="copyCode(this)">
+<i class="fas fa-copy mr-1"></i>复制
+                            </button>
+<pre><code class="language-javascript">// 会员等级数据
+const memberLevels = [
+    { name: '青铜会员', minPoints: 0, benefits: '基础折扣5%', color: 'bg-yellow-100 text-yellow-800' },
+    { name: '白银会员', minPoints: 1000, benefits: '折扣8% + 生日礼品', color: 'bg-gray-100 text-gray-800' },
+    { name: '黄金会员', minPoints: 5000, benefits: '折扣12% + 专属客服', color: 'bg-yellow-100 text-yellow-600' },
+    { name: '钻石会员', minPoints: 10000, benefits: '折扣15% + 免费配送', color: 'bg-blue-100 text-blue-800' }
+];
+
+// 加载会员系统
+function loadMembers() {
+    const levels = document.getElementById('memberLevels');
+    
+    levels.innerHTML = memberLevels.map(level =&gt; `
+        &lt;div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg"&gt;
+            &lt;div&gt;
+                &lt;span class="px-3 py-1 text-sm font-semibold rounded-full ${level.color}"&gt;
+                    ${level.name}
+                &lt;/span&gt;
+                &lt;p class="text-sm text-gray-600 mt-1"&gt;最低积分: ${level.minPoints}&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="text-right"&gt;
+                &lt;p class="text-sm font-medium text-gray-800"&gt;${level.benefits}&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    `).join('');
+
+    // 创建会员统计图
+    const memberCtx = document.getElementById('memberChart').getContext('2d');
+    if (charts.member) {
+        charts.member.destroy();
+    }
+    charts.member = new Chart(memberCtx, {
+        type: 'pie',
+        data: {
+            labels: ['青铜会员', '白银会员', '黄金会员', '钻石会员'],
+            datasets: [{
+                data: [45, 30, 20, 5],
+                backgroundColor: [
+                    'rgb(251, 191, 36)',
+                    'rgb(156, 163, 175)',
+                    'rgb(251, 191, 36)',
+                    'rgb(59, 130, 246)'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+}</code></pre>
+</div>
+</div>
+</section>
+<!-- 积分系统 -->
+<section class="code-section bg-white rounded-xl shadow-lg" id="points-system">
+<div class="p-6 border-b border-gray-200">
+<div class="flex justify-between items-center cursor-pointer" onclick="toggleSection(this)">
+<h2 class="text-xl font-bold text-gray-800">
+<i class="fas fa-coins text-orange-500 mr-2"></i>积分系统模块
+                            </h2>
+<i class="fas fa-chevron-down transform transition-transform duration-200"></i>
+</div>
+</div>
+<div class="code-content">
+<div class="code-container relative">
+<button class="copy-btn bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700" onclick="copyCode(this)">
+<i class="fas fa-copy mr-1"></i>复制
+                            </button>
+<pre><code class="language-javascript">// 积分商品数据
+const pointsStore = [
+    { name: '10元优惠券', points: 100, stock: 50 },
+    { name: '20元优惠券', points: 200, stock: 30 },
+    { name: '免费配送券', points: 50, stock: 100 },
+    { name: '生日礼品', points: 500, stock: 20 }
+];
+
+// 加载积分系统
+function loadPoints() {
+    const store = document.getElementById('pointsStore');
+    
+    store.innerHTML = pointsStore.map(item =&gt; `
+        &lt;div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg"&gt;
+            &lt;div&gt;
+                &lt;h4 class="font-medium text-gray-800"&gt;${item.name}&lt;/h4&gt;
+                &lt;p class="text-sm text-gray-600"&gt;库存: ${item.stock}&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="text-right"&gt;
+                &lt;p class="font-semibold text-blue-600"&gt;${item.points}积分&lt;/p&gt;
+                &lt;button onclick="exchangePoints('${item.name}', ${item.points})" class="text-sm bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition duration-200"&gt;
+                    兑换
+                &lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    `).join('');
+}
+
+// 积分兑换功能
+function exchangePoints(item, points) {
+    if (currentUser.points &gt;= points) {
+        currentUser.points -= points;
+        document.getElementById('userPoints').textContent = `积分: ${currentUser.points}`;
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        showNotification(`成功兑换 ${item}`, 'success');
+    } else {
+        showNotification('积分不足', 'error');
+    }
+}</code></pre>
+</div>
+</div>
+</section>
+<!-- 实时通信 -->
+<section class="code-section bg-white rounded-xl shadow-lg" id="realtime-communication">
+<div class="p-6 border-b border-gray-200">
+<div class="flex justify-between items-center cursor-pointer" onclick="toggleSection(this)">
+<h2 class="text-xl font-bold text-gray-800">
+<i class="fas fa-broadcast-tower text-indigo-500 mr-2"></i>实时通信模块
+                            </h2>
+<i class="fas fa-chevron-down transform transition-transform duration-200"></i>
+</div>
+</div>
+<div class="code-content">
+<div class="code-container relative">
+<button class="copy-btn bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700" onclick="copyCode(this)">
+<i class="fas fa-copy mr-1"></i>复制
+                            </button>
+<pre><code class="language-javascript">// 初始化WebSocket连接
+function initWebSocket() {
+    // 模拟WebSocket连接
+    // 在实际应用中，这里应该连接到真实的WebSocket服务器
+    console.log('WebSocket连接已建立');
+    
+    // 模拟接收消息
+    setInterval(() =&gt; {
+        if (Math.random() &gt; 0.8) {
+            const messages = [
+                '新用户注册',
+                '订单状态更新',
+                '积分兑换成功',
+                '商店上架新商品'
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            addMessage('系统', randomMessage, 'system');
+        }
+    }, 10000);
+}
+
+// 发送消息
+function sendMessage() {
+    const input = document.getElementById('messageInput');
+    const message = input.value.trim();
+    
+    if (!message) return;
+    
+    addMessage(currentUser.username, message, 'user');
+    input.value = '';
+    
+    // 模拟回复
+    setTimeout(() =&gt; {
+        addMessage('系统', '消息已收到', 'system');
+    }, 1000);
+}
+
+// 添加消息到聊天区域
+function addMessage(sender, message, type) {
+    const messageArea = document.getElementById('messageArea');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `mb-2 ${type === 'user' ? 'text-right' : 'text-left'}`;
+    
+    const time = new Date().toLocaleTimeString();
+    messageDiv.innerHTML = `
+        &lt;div class="inline-block max-w-xs lg:max-w-md px-3 py-2 rounded-lg ${
+            type === 'user' ? 'bg-blue-600 text-white' : 
+            type === 'system' ? 'bg-gray-200 text-gray-800' : 'bg-green-200 text-green-800'
+        }"&gt;
+            &lt;p class="text-sm font-medium"&gt;${sender}&lt;/p&gt;
+            &lt;p&gt;${message}&lt;/p&gt;
+            &lt;p class="text-xs opacity-75 mt-1"&gt;${time}&lt;/p&gt;
+        &lt;/div&gt;
+    `;
+    
+    messageArea.appendChild(messageDiv);
+    messageArea.scrollTop = messageArea.scrollHeight;
+}
+
+// 更新在线用户列表
+function updateOnlineUsers() {
+    const onlineUsers = document.getElementById('onlineUsers');
+    const users = ['admin1', 'store1', 'user1', 'user2'];
+    
+    onlineUsers.innerHTML = users.map(user =&gt; `
+        &lt;div class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-50"&gt;
+            &lt;div class="w-2 h-2 bg-green-500 rounded-full"&gt;&lt;/div&gt;
+            &lt;span class="text-sm text-gray-700"&gt;${user}&lt;/span&gt;
+        &lt;/div&gt;
+    `).join('');
+}</code></pre>
+</div>
+</div>
+</section>
+<!-- 数据可视化 -->
+<section class="code-section bg-white rounded-xl shadow-lg" id="data-visualization">
+<div class="p-6 border-b border-gray-200">
+<div class="flex justify-between items-center cursor-pointer" onclick="toggleSection(this)">
+<h2 class="text-xl font-bold text-gray-800">
+<i class="fas fa-chart-bar text-teal-500 mr-2"></i>数据可视化模块
+                            </h2>
+<i class="fas fa-chevron-down transform transition-transform duration-200"></i>
+</div>
+</div>
+<div class="code-content">
+<div class="code-container relative">
+<button class="copy-btn bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700" onclick="copyCode(this)">
+<i class="fas fa-copy mr-1"></i>复制
+                            </button>
+<pre><code class="language-javascript">// 创建仪表板图表
+function createDashboardCharts() {
+    // 日活用户趋势图
+    const dailyCtx = document.getElementById('dailyActiveChart').getContext('2d');
+    if (charts.dailyActive) {
+        charts.dailyActive.destroy();
+    }
+    charts.dailyActive = new Chart(dailyCtx, {
+        type: 'line',
+        data: {
+            labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+            datasets: [{
+                label: '日活用户',
+                data: [1200, 1350, 1100, 1400, 1600, 1800, 1500],
+                borderColor: 'rgb(59, 130, 246)',
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // 订单统计图
+    const orderCtx = document.getElementById('orderChart').getContext('2d');
+    if (charts.order) {
+        charts.order.destroy();
+    }
+    charts.order = new Chart(orderCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['已完成', '处理中', '待处理', '已取消'],
+            datasets: [{
+                data: [65, 20, 10, 5],
+                backgroundColor: [
+                    'rgb(34, 197, 94)',
+                    'rgb(59, 130, 246)',
+                    'rgb(251, 191, 36)',
+                    'rgb(239, 68, 68)'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+}
+
+// 显示通知
+function showNotification(message, type = 'info') {
+    const notifications = document.getElementById('notifications');
+    const notification = document.createElement('div');
+    
+    const colors = {
+        'success': 'bg-green-500',
+        'error': 'bg-red-500',
+        'warning': 'bg-yellow-500',
+        'info': 'bg-blue-500'
+    };
+    
+    notification.className = `notification ${colors[type]} text-white px-4 py-3 rounded-lg shadow-lg`;
+    notification.textContent = message;
+    
+    notifications.appendChild(notification);
+    
+    setTimeout(() =&gt; {
+        notification.remove();
+    }, 3000);
+}</code></pre>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+<script>
+        // 代码折叠功能
+        function toggleSection(element) {
+            const section = element.closest('.code-section');
+            const icon = element.querySelector('i.fa-chevron-down');
+            
+            section.classList.toggle('collapsed');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // 展开所有代码块
+        function expandAll() {
+            document.querySelectorAll('.code-section').forEach(section => {
+                section.classList.remove('collapsed');
+                const icon = section.querySelector('i.fa-chevron-down');
+                if (icon) {
+                    icon.classList.remove('rotate-180');
+                }
+            });
+        }
+
+        // 折叠所有代码块
+        function collapseAll() {
+            document.querySelectorAll('.code-section').forEach(section => {
+                section.classList.add('collapsed');
+                const icon = section.querySelector('i.fa-chevron-down');
+                if (icon) {
+                    icon.classList.add('rotate-180');
+                }
+            });
+        }
+
+        // 复制代码功能
+        function copyCode(button) {
+            const codeBlock = button.nextElementSibling.querySelector('code');
+            const text = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check mr-1"></i>已复制';
+                button.classList.add('bg-green-600');
+                button.classList.remove('bg-blue-600');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove('bg-green-600');
+                    button.classList.add('bg-blue-600');
+                }, 2000);
+            }).catch(err => {
+                console.error('复制失败:', err);
+            });
+        }
+
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 初始化时折叠所有代码块
+        document.addEventListener('DOMContentLoaded', function() {
+            collapseAll();
+        });
+    </script>
+<div style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; padding: 15px; background-color: #ffffff; color: #888888; font-family: Arial, sans-serif; z-index: 1000; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); font-size: 14px;"></div></body>
+</html>
